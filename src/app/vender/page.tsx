@@ -17,7 +17,7 @@ const STEPS = [
   { label: "Evento" }, { label: "Ingresso" }, { label: "Detalhes" }, { label: "Foto" }, { label: "Publicar" },
 ];
 
-const TIPOS: TipoIngresso[] = ["pista", "pista_vip", "camarote", "meia_entrada", "open_bar", "vip", "backstage"];
+const TIPOS: TipoIngresso[] = ["pista", "pista_vip", "mezanino", "camarote", "open_bar", "vip", "backstage", "frontstage", "area_vip"];
 
 interface FormData {
   eventoNome: string; eventoData: string; eventoHorario: string; eventoLocal: string;
@@ -87,7 +87,7 @@ export default function VenderPage() {
         if (!upErr) { const { data: urlData } = supabase.storage.from("ingressos").getPublicUrl(path); imagemUrl = urlData.publicUrl; }
       }
       const { data: anuncio, error: anErr } = await supabase.from("anuncios").insert({
-        vendedor_id: userData.user.id, evento_id: evento.id, tipo_ingresso: form.tipoIngresso as TipoIngresso,
+        vendedor_id: userData.user.id, evento_id: evento.id, setor: form.tipoIngresso,
         quantidade: form.quantidade, preco: form.preco, observacoes: form.observacoes || null,
         imagem_ingresso_url: imagemUrl, aceita_transferencia_titular: form.aceitaTransferenciaTitular,
         status: "ativo", destaque: false,

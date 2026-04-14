@@ -108,7 +108,7 @@ export default function PurchaseModal({ anuncio, onClose }: Props) {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-white/60">Tipo</span>
-                  <span className="text-white font-medium">{anuncio.tipo_ingresso.replace("_", " ")}</span>
+                  <span className="text-white font-medium">{(anuncio.setor ?? "").replace("_", " ")}</span>
                 </div>
                 <div className="border-t border-white/10 pt-3 space-y-1">
                   <div className="flex justify-between text-sm">

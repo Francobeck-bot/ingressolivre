@@ -12,7 +12,7 @@ import SafetyBanner from "@/components/SafetyBanner";
 import IngressoCard from "@/components/IngressoCard";
 import PurchaseModal from "./PurchaseModal";
 import type { Anuncio, Avaliacao } from "@/types/database";
-import { formatCurrency, formatDate, calcTaxa, calcTotal, TIPO_INGRESSO_LABELS } from "@/lib/utils";
+import { formatCurrency, formatDate, calcTaxa, calcTotal, SETOR_LABELS, GENERO_LABELS, ENTRADA_LABELS } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 export default function IngressoPage() {
@@ -105,8 +105,10 @@ export default function IngressoPage() {
 
               {/* Badges */}
               <div className="absolute top-4 left-4 flex gap-2">
-                <span className={cn("px-3 py-1 rounded-full text-xs font-semibold border", TIPO_INGRESSO_COLORS[anuncio.tipo_ingresso])}>
-                  {TIPO_INGRESSO_LABELS[anuncio.tipo_ingresso]}
+                <span className={cn("px-3 py-1 rounded-full text-xs font-semibold border", "bg-white/20 text-white border-white/30")}>
+                  {anuncio.setor ? SETOR_LABELS[anuncio.setor] : ""}
+                  {anuncio.genero ? ` • ${GENERO_LABELS[anuncio.genero]}` : ""}
+                  {anuncio.entrada ? ` • ${ENTRADA_LABELS[anuncio.entrada]}` : ""}
                 </span>
                 {anuncio.destaque && (
                   <span className="px-3 py-1 rounded-full bg-[#e0f809] text-[#0d0010] text-xs font-bold">

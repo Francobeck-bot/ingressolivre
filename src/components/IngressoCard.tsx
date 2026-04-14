@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, MapPin, Package } from "lucide-react";
-import { cn, formatCurrency, formatDate, TIPO_INGRESSO_LABELS } from "@/lib/utils";
+import { cn, formatCurrency, formatDate, SETOR_LABELS } from "@/lib/utils";
 import SellerBadge from "./SellerBadge";
 import StarRating from "./StarRating";
 import type { Anuncio } from "@/types/database";
@@ -16,7 +16,7 @@ interface IngressoCardProps {
 }
 
 export default function IngressoCard({ anuncio, className, featured }: IngressoCardProps) {
-  const { evento, vendedor, tipo_ingresso, preco, quantidade } = anuncio;
+  const { evento, vendedor, setor, preco, quantidade } = anuncio;
 
   return (
     <Link
@@ -64,7 +64,7 @@ export default function IngressoCard({ anuncio, className, featured }: IngressoC
 
           <div style={{ position: "absolute", top: 8, right: 8 }}>
             <span style={{ padding: "3px 10px", borderRadius: 999, background: "rgba(255,255,255,0.88)", color: "#0F0F0F", fontSize: 11, fontWeight: 600, fontFamily: FONT, backdropFilter: "blur(8px)" }}>
-              {TIPO_INGRESSO_LABELS[tipo_ingresso]}
+              {setor ? SETOR_LABELS[setor] : ""}
             </span>
           </div>
         </div>

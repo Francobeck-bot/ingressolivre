@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
           {
             id: transacaoId,
             title: evento?.nome ?? "Ingresso",
-            description: `${transacao.anuncio?.tipo_ingresso ?? ""} — ${evento?.data ?? ""}`,
+            description: `${transacao.anuncio?.setor ?? ""} — ${evento?.data ?? ""}`,
             quantity: 1,
             unit_price: transacao.valor_total,
             currency_id: "BRL",

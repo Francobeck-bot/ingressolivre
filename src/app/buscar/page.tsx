@@ -142,7 +142,7 @@ function BuscarPageInner() {
       .gte("preco", precoMin)
       .lte("preco", precoMax)
       .range(currentPage * PAGE_SIZE, currentPage * PAGE_SIZE + PAGE_SIZE - 1);
-    if (tipos.length > 0) q = q.in("tipo_ingresso", tipos);
+    if (tipos.length > 0) q = q.in("setor", tipos);
     if (cidade) q = q.ilike("evento.cidade", `%${cidade}%`);
     if (query) q = q.ilike("evento.nome", `%${query}%`);
     if (ordenar === "preco_asc") q = q.order("preco", { ascending: true });
