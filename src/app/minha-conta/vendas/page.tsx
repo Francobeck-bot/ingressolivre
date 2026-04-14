@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { Package, Upload, Loader2, TrendingUp, Plus, DollarSign, Shield, Star, Gem } from "lucide-react";
+import { Package, Upload, Loader2, TrendingUp, Plus, DollarSign } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import SellerBadge from "@/components/SellerBadge";
 import type { Transacao, Anuncio, Profile } from "@/types/database";

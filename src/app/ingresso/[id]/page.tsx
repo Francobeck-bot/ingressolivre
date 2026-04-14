@@ -12,7 +12,7 @@ import SafetyBanner from "@/components/SafetyBanner";
 import IngressoCard from "@/components/IngressoCard";
 import PurchaseModal from "./PurchaseModal";
 import type { Anuncio, Avaliacao } from "@/types/database";
-import { formatCurrency, formatDate, calcTaxa, calcTotal, TIPO_INGRESSO_LABELS, TIPO_INGRESSO_COLORS } from "@/lib/utils";
+import { formatCurrency, formatDate, calcTaxa, calcTotal, TIPO_INGRESSO_LABELS } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 export default function IngressoPage() {

@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, Ticket, Plus, MessageCircle, User, Search } from "lucide-react";
+import { Menu, X, Plus, MessageCircle, User, Search } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
-import { cn } from "@/lib/utils";
 
 const FONT = '"Satoshi", "DM Sans", sans-serif';
 const GRAD = "linear-gradient(135deg, #FF1F5A 0%, #FF7032 100%)";
