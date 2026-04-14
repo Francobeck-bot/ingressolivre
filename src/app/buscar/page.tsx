@@ -7,13 +7,14 @@ import { useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal, X, ChevronDown } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import IngressoCard, { IngressoCardSkeleton } from "@/components/IngressoCard";
-import type { Anuncio, TipoIngresso, NivelVerificacao } from "@/types/database";
-import { TIPO_INGRESSO_LABELS } from "@/lib/utils";
+import type { Anuncio, SetorIngresso, NivelVerificacao } from "@/types/database";
+import { SETOR_LABELS } from "@/lib/utils";
 
 const FONT = '"Satoshi", "DM Sans", sans-serif';
 const GRAD = "linear-gradient(135deg, #FF1F5A 0%, #FF7032 100%)";
 
-const TIPOS: TipoIngresso[] = ["pista", "pista_vip", "camarote", "meia_entrada", "open_bar", "vip", "backstage"];
+const TIPOS: SetorIngresso[] = ["pista", "pista_vip", "mezanino", "camarote", "open_bar", "vip", "backstage", "frontstage", "area_vip"];
+const TIPO_INGRESSO_LABELS = SETOR_LABELS;
 const NIVEIS: NivelVerificacao[] = ["bronze", "ouro", "diamante"];
 const NIVEL_LABELS: Record<NivelVerificacao, string> = { bronze: "🥉 Bronze", ouro: "🥇 Ouro", diamante: "💎 Diamante" };
 const ORDENAR = [
@@ -42,8 +43,8 @@ function FilterPanel({
   toggleTipo, toggleNivel, setPrecoMin, setPrecoMax, setCidade,
   hasFilters, clearAll,
 }: {
-  tipos: TipoIngresso[]; niveis: NivelVerificacao[]; precoMin: number; precoMax: number; cidade: string;
-  toggleTipo: (t: TipoIngresso) => void; toggleNivel: (n: NivelVerificacao) => void;
+  tipos: SetorIngresso[]; niveis: NivelVerificacao[]; precoMin: number; precoMax: number; cidade: string;
+  toggleTipo: (t: SetorIngresso) => void; toggleNivel: (n: NivelVerificacao) => void;
   setPrecoMin: (v: number) => void; setPrecoMax: (v: number) => void; setCidade: (v: string) => void;
   hasFilters: boolean; clearAll: () => void;
 }) {
@@ -119,7 +120,7 @@ function BuscarPageInner() {
   const loaderRef = useRef<HTMLDivElement>(null);
 
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
-  const [tipos, setTipos] = useState<TipoIngresso[]>([]);
+  const [tipos, setTipos] = useState<SetorIngresso[]>([]);
   const [niveis, setNiveis] = useState<NivelVerificacao[]>([]);
   const [precoMin, setPrecoMin] = useState(0);
   const [precoMax, setPrecoMax] = useState(1000);
@@ -163,7 +164,7 @@ function BuscarPageInner() {
     return () => observer.disconnect();
   }, [hasMore, loading, fetchResults]);
 
-  function toggleTipo(t: TipoIngresso) { setTipos((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]); }
+  function toggleTipo(t: SetorIngresso) { setTipos((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]); }
   function toggleNivel(n: NivelVerificacao) { setNiveis((prev) => prev.includes(n) ? prev.filter((x) => x !== n) : [...prev, n]); }
   function clearAll() { setTipos([]); setNiveis([]); setPrecoMin(0); setPrecoMax(1000); setCidade(""); setOrdenar("recente"); }
   const hasFilters = tipos.length > 0 || niveis.length > 0 || !!cidade || precoMin > 0 || precoMax < 1000;
